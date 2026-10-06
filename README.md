@@ -182,6 +182,10 @@ Los colores de la interfaz son variables CSS en `style.css`: `:root` define el t
 
 > Si cambias `COLS`, `ROWS` o `BLOCK`, recuerda ajustar también `width` y `height` del `<canvas id="board">` en `index.html` para que coincida (`COLS × BLOCK` × `ROWS × BLOCK`).
 
+### Skins visuales
+
+El selector `#skin-select` (junto al botón de tema) alterna entre Retro, Neon, Pastel y Pixel art. La preferencia se guarda en `localStorage` (clave `skin`) y es independiente del tema claro/oscuro. Cada skin vive en el objeto `SKINS` de `game.js` con su paleta `colors` (índices 1–8) y su función `draw(context, x, y, colorIndex, size, alpha)`; para añadir una, crea la entrada, su `<option>` en `index.html` y su nombre en la lista del script de `<head>`.
+
 ---
 
 ## Licencia
