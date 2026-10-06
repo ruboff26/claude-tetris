@@ -171,6 +171,30 @@ kbd {
   border-color: var(--accent);
 }
 
+/* ---- Skins ---- */
+.skin-select {
+  position: fixed;
+  top: 16px;
+  right: 130px; /* a la izquierda de #theme-toggle */
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+[data-skin="neon"] {
+  --board-bg: #000;
+  --grid: #14142a;
+}
+
+#board, #next-canvas {
+  background: var(--board-bg, var(--surface));
+}
+
 /* ---- Overlay ---- */
 .overlay {
   position: absolute;
