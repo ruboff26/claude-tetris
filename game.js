@@ -400,6 +400,12 @@ function recordsRender(highlight) {
 }
 
 function recordsOnInit() {
+  if (board && !gameOver) { // partida abandonada: conserva estadísticas
+    const d = recordsLoad();
+    d.bestCombo = Math.max(d.bestCombo, recordsRunBestCombo);
+    d.maxLines = Math.max(d.maxLines, lines);
+    recordsSave(d);
+  }
   recordsCombo = 0;
   recordsRunBestCombo = 0;
   recordsPending = false;
@@ -452,9 +458,11 @@ recordsForm.addEventListener('submit', e => {
   recordsSave(data);
   recordsForm.hidden = true;
   recordsRender(date);
+  document.getElementById('records-save-btn').blur();
 });
 
 recordsResetBtn.addEventListener('click', () => {
+  recordsResetBtn.blur();
   if (!confirm('¿Borrar todos los records?')) return;
   try { localStorage.removeItem(RECORDS_KEY); } catch (e) {}
   recordsNewEl.hidden = true;
