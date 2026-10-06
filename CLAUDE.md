@@ -17,7 +17,7 @@ Tres archivos: `index.html` (DOM + dos canvas: `#board` 300×600 y `#next-canvas
 Puntos de `game.js` que conviene conocer:
 
 - **Estado global mutable** declarado en una sola línea con `let` (`board`, `current`, `next`, `score`, `lines`, `level`, `paused`, `gameOver`, `dropInterval`, `animId`...). `init()` lo reinicia todo y también sirve de reinicio (botón `#restart-btn`).
-- **Piezas**: `PIECES[type]` son matrices cuyo valor de celda es el propio índice de tipo (1–7), que a su vez indexa `COLORS`. El tablero guarda ese mismo índice (0 = vacío). `randomPiece()` clona la forma y la coloca centrada en `y: 0`.
+- **Piezas**: `PIECES[type]` son matrices cuyo valor de celda es el propio índice de tipo (1–8; la 8 es la tuerca, un anillo 3×3 con hueco central), que a su vez indexa `COLORS`. El tablero guarda ese mismo índice (0 = vacío). `randomPiece()` clona la forma y la coloca centrada en `y: 0`.
 - **Ciclo de vida de una pieza**: `lockPiece()` = `merge()` → `clearLines()` → `spawn()`. `spawn()` promueve `next` a `current` y llama a `endGame()` si colisiona al aparecer.
 - **Bucle**: `loop` con `requestAnimationFrame` acumula `dropAccum` y baja una fila al superar `dropInterval`. Pausa y game over cancelan el frame con `cancelAnimationFrame(animId)`; al reanudar se resetea `lastTime` y se llama a `loop` a mano.
 - **Rotación**: `rotateCW` + wall kicks simples (`[0, -1, 1, -2, 2]` en columnas) en `tryRotate`.
