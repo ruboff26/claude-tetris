@@ -21,7 +21,7 @@ Puntos de `game.js` que conviene conocer:
 - **Ciclo de vida de una pieza**: `lockPiece()` = `merge()` → `clearLines()` → `spawn()`. `spawn()` promueve `next` a `current` y llama a `endGame()` si colisiona al aparecer.
 - **Bucle**: `loop` con `requestAnimationFrame` acumula `dropAccum` y baja una fila al superar `dropInterval`. Pausa y game over cancelan el frame con `cancelAnimationFrame(animId)`; al reanudar se resetea `lastTime` y se llama a `loop` a mano.
 - **Rotación**: `rotateCW` + wall kicks simples (`[0, -1, 1, -2, 2]` en columnas) en `tryRotate`.
-- **Puntuación/velocidad**: `LINE_SCORES × level`; hard drop +2/celda, soft drop +1/fila; nivel = `floor(lines/10)+1`; `dropInterval = max(100, 1000 - (level-1)*90)`.
+- **Puntuación/velocidad**: `LINE_SCORES × level`; hard drop +2/celda, soft drop +1/fila; nivel = `levelFor(lines)` = `gameStartLevel + floor(lines/10)` (`startLevel` se elige en el menú de pausa, `P`/`Escape`, y se copia en `init()`); velocidad vía `speedFor(level)`; `dropInterval = max(100, 1000 - (level-1)*90)`.
 
 ## Al modificar
 
